@@ -53,7 +53,7 @@ class OpenAI_LLMs implements INode {
                         name: 'text-babbage-001'
                     }
                 ],
-                default: 'text-davinci-003',
+                default: 'gpt-3.5-turbo',
                 optional: true
             },
             {
