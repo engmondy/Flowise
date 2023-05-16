@@ -1,31 +1,24 @@
-# Build local monorepo image
-# docker build --no-cache -t  flowise .
-# Run image
-# docker run -d -p 3000:3000 flowise
+# Use the official node:18-alpine image as the base image
 FROM node:18-alpine
 
-WORKDIR /usr/src/packages
+# Set the user to root
+USER root
 
-# Copy root package.json and lockfile
-COPY package.json ./
-COPY yarn.lock ./
+# Install git, python3, py3-pip, make, and g++
+RUN apk add --no-cache git
+RUN apk add --no-cache python3 py3-pip make g++
 
-# Copy components package.json
-COPY packages/components/package.json ./packages/components/package.json
+# Install flowise globally
+RUN npm install -g flowise
 
-# Copy ui package.json
-COPY packages/ui/package.json ./packages/ui/package.json
+# Set the working directory
+WORKDIR /data
 
-# Copy server package.json
-COPY packages/server/package.json ./packages/server/package.json
+# Set environment variables
+ENV PORT=80
 
-RUN yarn install
+# Expose the specified port
+EXPOSE ${PORT}
 
-# Copy app source
-COPY . .
-
-RUN yarn build
-
-EXPOSE 3000
-
-CMD [ "yarn", "start" ]
+# Start the application with a delay
+CMD /bin/sh -c "sleep 3; flowise start"
