@@ -34,23 +34,8 @@ class OpenAI_LLMs implements INode {
                     {
                         label: 'gpt-3.5-turbo',
                         name: 'gpt-3.5-turbo'
-                    },
-                    {
-                        label: 'text-davinci-003',
-                        name: 'text-davinci-003'
-                    },
-                    {
-                        label: 'text-davinci-002',
-                        name: 'text-davinci-002'
-                    },
-                    {
-                        label: 'text-curie-001',
-                        name: 'text-curie-001'
-                    },
-                    {
-                        label: 'text-babbage-001',
-                        name: 'text-babbage-001'
                     }
+
                 ],
                 default: 'gpt-3.5-turbo',
                 optional: true
